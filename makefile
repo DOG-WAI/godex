@@ -46,7 +46,7 @@ linux-app:
 	# 交叉编译为linux可执行文件
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags='-w -s' $(FLAGS) -o ./${app} ./cmd
 
-# 一键部署（默认上传到86dev环境）
+# 一键部署（默认上传到开发环境）
 upload: linux-app
 	@echo -e "\033[32m ============== uploading ${TARGET} =============> \033[0m"
 	dtools bpatch -lang=go -env=${ENV} -app=${APP} -server=${TARGET} -user=${USER} -bin=${TARGET} -instances=${INS}
