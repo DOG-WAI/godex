@@ -9,6 +9,7 @@ import (
 func main() {
 	var opt serve.Option
 
+	// 支持双模式启动
 	// 默认启用Web服务模式
 	opt = serve.WithWebDefault()
 	if len(os.Args) > 1 {
