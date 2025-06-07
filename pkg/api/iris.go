@@ -50,7 +50,7 @@ func Handler[TReq any, TRsp any](handler func(ctx context.Context, req TReq) (TR
 			// 如果读取JSON失败，可能是GET请求或空请求体，使用零值
 			// 对于GET请求或其他不需要请求体的情况，这是正常行为
 			Error(ctx, errs.NewFrameError(errs.RetClientEncodeFail, err.Error()))
-			logger.Errorf("req parse json fail, err: %+v", err)
+			logger.Errorf("request parse json fail, err: %+v", err)
 			return
 		}
 
