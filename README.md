@@ -183,17 +183,6 @@ errs.SetTraceableWithContent("service_name") // 过滤特定内容
 logger.IgnoreError(err) // 静默处理非关键错误
 ```
 
-#### 高性能批处理
-- **内存可控**: 分批加载避免内存溢出
-- **性能优化**: 批量操作提高数据库性能  
-- **灵活配置**: 可根据硬件资源调整批次大小
-
-```yaml
-app-setting:
-  batch-upsert-size: 5000   # 批量插入大小
-  batch-load-size: 100000   # 批量加载大小
-```
-
 #### 数据安全传输
 - **双重加密**: AES对称加密 + RSA非对称加密保护敏感数据
 - **异步上报**: 数据上报不阻塞主业务流程
