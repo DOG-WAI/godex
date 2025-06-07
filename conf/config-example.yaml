@@ -1,0 +1,57 @@
+system:
+  env: local
+  log:
+    level: INFO
+    file: "./logs/app.log"
+    rotate: true
+    max-days: 30
+    timezhone: "Asia/Shanghai"
+  service:
+    name: "godex"
+    port: 8000
+  tasks:
+    - name: "预加载数据到内存"
+      enable: true
+      cron: "@once"
+      function: "LoadPhishingSites2CacheTask"
+      description: "载数据到内存,启动时预加载"
+    - name: "定时加载数据到内存"
+      enable: true
+      cron: "0 0 2 * * *"
+      function: "LoadPhishingSites2CacheTask"
+      description: "加载数据到内存,每天凌晨2点执行"
+    # 测试任务配置
+    - name: "测试任务1"
+      enable: true
+      cron: "*/5 * * * * *"        # 每5秒执行一次
+      function: "CronTestTask"
+      description: "每5秒执行的简单测试任务"
+    - name: "测试任务2"
+      enable: false
+      cron: "@every 5s"        # 每5秒执行一次
+      function: "CronTestTask"
+      description: "每5秒执行的简单测试任务"
+    - name: "测试任务3"
+      enable: false
+      cron: "@once"
+      function: "CronTestTask"
+      description: "启动时执行一次"
+  report:
+    endpoint: https://sys-test.adspower.net
+    enable: true
+    aes-public-key: |
+      -----BEGIN PUBLIC KEY-----
+      *
+      -----END PUBLIC KEY-----
+
+app-setting:
+  scam-sniffer: "https://raw.githubusercontent.com/scamsniffer/scam-database/refs/heads/main/blacklist/domains.json"
+  fixed-sniffer:
+    - phishing-sites-foo.com
+    - phishing-sites-bar.com
+  bucket-name: godex
+  bucket-endpoint: "https://oss-ap-southeast-1.aliyuncs.com"
+
+environment-variable:
+  oss-access-key: *
+  oss-access-key-secret: *
