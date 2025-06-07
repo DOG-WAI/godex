@@ -19,6 +19,6 @@ var importPhishingSitesCmd = &cobra.Command{
 		if err := phishingSitesService.ImportPhishingSites(context.Background()); err != nil {
 			logger.Fatalf("ImportPhishingSites command failed: %v", err)
 		}
-		logger.Infof("ImportPhishingSites command completed successfully!")
+		logger.Infof("ImportPhishingSites command completed successfully.")
 	},
 }
