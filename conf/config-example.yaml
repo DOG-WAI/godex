@@ -22,7 +22,7 @@ system:
       description: "加载数据到内存,每天凌晨2点执行"
     # 测试任务配置
     - name: "测试任务1"
-      enable: false
+      enable: true
       cron: "*/5 * * * * *"        # 每5秒执行一次
       function: "CronTestTask"
       description: "每5秒执行的简单测试任务"
